@@ -30,42 +30,42 @@ const Navbar = () => {
                     </li>
                     <li>
                         <a
-                            href="/"
-                            aria-label="Our product"
-                            title="Our product"
+                            href="/instructors"
+                            aria-label="instructors"
+                            title="Instructors"
                             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                         >
-                            Features
+                            Instructors
                         </a>
                     </li>
                     <li>
                         <a
-                            href="/"
-                            aria-label="Product pricing"
-                            title="Product pricing"
+                            href="/classes"
+                            aria-label="classes"
+                            title="Classes"
                             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                         >
-                            Pricing
+                            Classes
                         </a>
                     </li>
                     <li>
                         <a
-                            href="/"
-                            aria-label="About us"
-                            title="About us"
+                            href="/dashboard"
+                            aria-label="dashboard"
+                            title="Dashboard"
                             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                         >
-                            About us
+                            Dashboard
                         </a>
                     </li>
                 </ul>
                 <ul className="flex items-center hidden space-x-8 lg:flex">
                     <li>
                         <a
-                            href="/"
+                            href="/login"
                             className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                            aria-label="Sign up"
-                            title="Sign up"
+                            aria-label="login"
+                            title="Log In"
                         >
                             Log In
                         </a>
@@ -94,7 +94,7 @@ const Navbar = () => {
                         </svg>
                     </button>
                     {isMenuOpen && (
-                        <div className="absolute top-0 left-0 w-full">
+                        <div className="absolute z-40 top-0 left-0 w-full">
                             <div className="p-5 bg-white border rounded shadow-sm">
                                 <div className="flex items-center justify-between mb-4">
                                     <div>
@@ -132,50 +132,50 @@ const Navbar = () => {
                                         <li>
                                             <a
                                                 href="/"
-                                                aria-label="Our product"
-                                                title="Our product"
+                                                aria-label="Home"
+                                                title="Home"
                                                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                                             >
-                                                Product
+                                                Home
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                href="/"
-                                                aria-label="Our product"
-                                                title="Our product"
+                                                href="/instructors"
+                                                aria-label="instructors"
+                                                title="Instructors"
                                                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                                             >
-                                                Features
+                                                Instructors
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                href="/"
-                                                aria-label="Product pricing"
-                                                title="Product pricing"
+                                                href="/classes"
+                                                aria-label="classes"
+                                                title="Classes"
                                                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                                             >
-                                                Pricing
+                                                Classes
                                             </a>
                                         </li>
 
                                         <li>
                                             <a
-                                                href="/"
-                                                aria-label="About us"
-                                                title="About us"
+                                                href="/dashboard"
+                                                aria-label="dashboard"
+                                                title="dashboard"
                                                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                                             >
-                                                About us
+                                                Dashboard
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                href="/"
+                                                href="/login"
                                                 className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                                                aria-label="Sign up"
-                                                title="Sign up"
+                                                aria-label="login"
+                                                title="Log In"
                                             >
                                                 Log In
                                             </a>
