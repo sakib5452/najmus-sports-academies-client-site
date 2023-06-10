@@ -1,10 +1,5 @@
 
 import img1 from '../../../assets/cover1.png'
-// import img2 from '../../../assets/cover2.png'
-// import img3 from '../../../assets/cover3.png'
-// import img4 from '../../../assets/cover4.png'
-// import img5 from '../../../assets/cover5.png'
-// import img6 from '../../../assets/cover6.png'
 
 const Banner = () => {
 
@@ -43,14 +38,7 @@ const Banner = () => {
                         athlete. From Youth to Adult, to Multi-sport and single sport Athletes. we are ready  to help you achieve your goals !
 
                     </p>
-                    <div className="flex items-center">
-                        <a
-                            href="/"
-                            className="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                        >
-                            Join Today
-                        </a>
-                    </div>
+
                 </div>
             </div>
         </div>
