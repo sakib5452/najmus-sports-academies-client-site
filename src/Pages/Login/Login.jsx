@@ -1,8 +1,53 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import pic from '../../../src/assets/login-password-cyber-security-concept-data-protection-secured-internet-access-cybersecurity_29488-6016.avif'
+import toast from 'react-hot-toast'
+import { TbFidgetSpinner } from 'react-icons/tb'
+import { useContext, useRef } from 'react';
+import { AuthContext } from '../../provider/AuthProvider';
 import Google from '../Google/Google';
+
+
 const Login = () => {
+    const { loading, setLoading, signIn, resetPassword } =
+        useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
+    const emailRef = useRef()
+    // Handle submit
+    const handleSubmit = event => {
+        event.preventDefault()
+        const email = event.target.email.value
+        const password = event.target.password.value
+        signIn(email, password)
+            .then(result => {
+                console.log(result.user)
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                setLoading(false)
+                console.log(err.message)
+                toast.error(err.message)
+            })
+    }
+
+
+    const handleReset = () => {
+        const email = emailRef.current.value
+
+        resetPassword(email)
+            .then(() => {
+                toast.success('Please check your email for reset link')
+                setLoading(false)
+            })
+            .catch(err => {
+                setLoading(false)
+                console.log(err.message)
+                toast.error(err.message)
+            })
+    }
+
     return (
         <div className="relative  mb-14">
             <img
@@ -21,12 +66,12 @@ const Login = () => {
                             </h2>
 
                         </div>
-                        <div className="w-full max-w-xl xl:px-8 xl:w-5/12 mr-20">
+                        <div className="w-full max-w-xl xl:px-8 xl:w-5/12 lg:mr-20">
                             <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
                                 <h3 className="mb-4  text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                                     Please Log In
                                 </h3>
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="email"
@@ -57,27 +102,39 @@ const Login = () => {
                                             name="password"
                                         />
                                     </div>
-                                    <label className="label">
+                                    <label className="label" onClick={handleReset}>
                                         <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                     </label>
-                                    <div className="mt-4 mb-2 sm:mb-4">
+                                    <div>
                                         <button
-                                            type="Log In"
-                                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                                            type='submit'
+                                            className='inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none'
                                         >
-                                            Log In
+                                            {loading ? (
+                                                <TbFidgetSpinner className='m-auto animate-spin' size={24} />
+                                            ) : (
+                                                'Continue'
+                                            )}
                                         </button>
                                     </div>
-                                    <h4> Don't Have an Account? <span className='text-primary'><Link to="/register">Register</Link></span></h4>
-                                    <div className="divider">OR</div>
                                     <Google></Google>
+                                    <p className='px-6 text-sm text-center text-gray-400'>
+                                        Don't have an account yet?{' '}
+                                        <Link
+                                            to='/signUp'
+                                            className='hover:underline hover:text-purple-700 text-purple-400'
+                                        >
+                                            Sign up
+                                        </Link>
+                                        .
+                                    </p>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

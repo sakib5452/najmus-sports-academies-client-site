@@ -1,5 +1,6 @@
 import { useState } from "react";
 import logo from '../../../assets/logo.png'
+import Avatar from "../../Avatar/Avatar";
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
@@ -71,6 +72,7 @@ const Navbar = () => {
                         </a>
                     </li>
                 </ul>
+                <Avatar></Avatar>
                 <div className="lg:hidden">
                     <button
                         aria-label="Open Menu"
