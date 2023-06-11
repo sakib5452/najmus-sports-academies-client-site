@@ -1,20 +1,34 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import pic from '../../../src/assets/login-password-cyber-security-concept-data-protection-secured-internet-access-cybersecurity_29488-6016.avif'
-import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
-import { useContext, useRef } from 'react';
+import { HiEyeOff } from 'react-icons/hi'
+import { HiEye } from 'react-icons/hi'
+import { useContext, useState } from 'react';
+import Swal from 'sweetalert2'
 import { AuthContext } from '../../provider/AuthProvider';
 import Google from '../Google/Google';
 
 
 const Login = () => {
-    const { loading, setLoading, signIn, resetPassword } =
+
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(true);
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handleTogglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const { loading, setLoading, signIn } =
         useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
-    const emailRef = useRef()
+    // const emailRef = useRef()
     // Handle submit
     const handleSubmit = event => {
         event.preventDefault()
@@ -28,25 +42,30 @@ const Login = () => {
             .catch(err => {
                 setLoading(false)
                 console.log(err.message)
-                toast.error(err.message)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: err,
+                    footer: '<a href="">Why do I have this issue?</a>'
+                })
             })
     }
 
 
-    const handleReset = () => {
-        const email = emailRef.current.value
+    // const handleReset = () => {
+    //     const email = emailRef.current.value
 
-        resetPassword(email)
-            .then(() => {
-                toast.success('Please check your email for reset link')
-                setLoading(false)
-            })
-            .catch(err => {
-                setLoading(false)
-                console.log(err.message)
-                toast.error(err.message)
-            })
-    }
+    //     resetPassword(email)
+    //         .then(() => {
+    //             toast.success('Please check your email for reset link')
+    //             setLoading(false)
+    //         })
+    //         .catch(err => {
+    //             setLoading(false)
+    //             console.log(err.message)
+    //             toast.error(err.message)
+    //         })
+    // }
 
     return (
         <div className="relative  mb-14">
@@ -87,22 +106,33 @@ const Login = () => {
                                             name="email"
                                         />
                                     </div>
-                                    <div className="mb-1 sm:mb-2">
+                                    <div className="mb-1 sm:mb-2 ">
                                         <label
                                             htmlFor="password"
                                             className="inline-block mb-1 font-medium"
                                         >
                                             Password
                                         </label>
-                                        <input
-                                            placeholder="Input Your Password"
-                                            required
-                                            type="password"
-                                            className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-purple-500 focus:outline-none focus:shadow-outline"
-                                            name="password"
-                                        />
+                                        <div className='input-wrapper'>
+                                            <input
+                                                placeholder="Input Your Password"
+                                                required
+                                                type={showPassword ? 'password' : 'text'}
+                                                className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-purple-500 focus:outline-none focus:shadow-outline"
+                                                name="password"
+                                                value={password}
+                                                onChange={handlePasswordChange}
+                                            />
+                                            <div className='lg:ml-80 ml-96'>
+                                                {showPassword ? (
+                                                    <HiEyeOff className="icon" onClick={handleTogglePasswordVisibility} />
+                                                ) : (
+                                                    <HiEye className="icon" onClick={handleTogglePasswordVisibility} />
+                                                )}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <label className="label" onClick={handleReset}>
+                                    <label className="label">
                                         <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                     </label>
                                     <div>
