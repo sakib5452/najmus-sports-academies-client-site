@@ -8,6 +8,11 @@ import Login from "../Pages/Login/Login";
 import SingUp from "../Pages/SingUp/SingUp";
 import Terms from "../Pages/Terms/Terms";
 import NotFound from "../Pages/NotFound/NotFound";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Welcome from "../Pages/Dashboard/Welcome";
+import PrivetRoute from "./PrivetRoute";
+import MySelecedClasses from "../components/Dashboard/MySelecedClasses";
+import EnrollClasses from "../components/Dashboard/EnrollClasses";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +34,25 @@ export const router = createBrowserRouter([
             {
                 path: "terms",
                 element: <Terms></Terms>
+            },
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <PrivetRoute><DashboardLayout></DashboardLayout>
+        </PrivetRoute>,
+        children: [
+            {
+                path: '',
+                element: <Welcome></Welcome>
+            },
+            {
+                path: 'MySelectedClasses',
+                element: <PrivetRoute><MySelecedClasses></MySelecedClasses></PrivetRoute>
+            },
+            {
+                path: 'EnrolledClasses',
+                element: <PrivetRoute><EnrollClasses></EnrollClasses></PrivetRoute>
             },
         ]
     },
