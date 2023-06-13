@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from '../../../src/assets/logo.png'
 import { AuthContext } from "../../provider/AuthProvider";
 import { useContext, useState } from "react";
 import { imageUpload } from "../../api/utils";
+import { addClasses } from "../../api/classes";
+import Swal from 'sweetalert2'
+
 
 const AddClass = () => {
     const { user } = useContext(AuthContext);
     const [number, setNumber] = useState();
     const [number1, setNumber1] = useState();
+    const navigate = useNavigate()
     const [uploadButtonText, setUploadButtonText] = useState('Upload Image')
 
     const handleSubmit = event => {
@@ -22,7 +26,7 @@ const AddClass = () => {
         // Upload image
         imageUpload(image)
             .then(data => {
-                const classData = {
+                const classesData = {
 
                     name,
                     price: parseFloat(price),
@@ -37,18 +41,23 @@ const AddClass = () => {
 
                 }
 
-                // post room data to server
-                // addRoom(roomData)
-                //   .then(data => {
-                //     console.log(data)
-                //     setUploadButtonText('Uploaded!')
+                // post classes data to server
+                addClasses(classesData)
+                    .then(data => {
+                        console.log(data)
+                        setUploadButtonText('Uploaded!')
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Class Added!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        navigate('/dashboard/MyClasses')
+                    })
+                    .catch(err => console.log(err))
 
-                //     toast.success('Room Added!')
-                //     navigate('/dashboard/my-listings')
-                //   })
-                //   .catch(err => console.log(err))
-
-                console.log(classData)
+                console.log(classesData)
                 event.target.reset();
             })
             .catch(err => {
