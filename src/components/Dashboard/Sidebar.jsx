@@ -8,6 +8,7 @@ import { HiClipboardList } from 'react-icons/hi'
 import { AiOutlineBars } from 'react-icons/ai'
 import { HiFingerPrint } from 'react-icons/hi'
 import { HiCurrencyDollar } from 'react-icons/hi'
+import { HiClipboardCheck } from 'react-icons/hi'
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Avatar from "../../Pages/Avatar/Avatar";
@@ -156,6 +157,17 @@ const Sidebar = () => {
                             < HiFingerPrint className='w-5 h-5' />
 
                             <span className='mx-4 font-medium'>Add Class</span>
+                        </NavLink>
+                        <NavLink
+                            to='/dashboard/MyClasses'
+                            className={({ isActive }) =>
+                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                }`
+                            }
+                        >
+                            < HiClipboardCheck className='w-5 h-5' />
+
+                            <span className='mx-4 font-medium'>My Classes</span>
                         </NavLink>
                         <NavLink
                             to='/dashboard/profile'

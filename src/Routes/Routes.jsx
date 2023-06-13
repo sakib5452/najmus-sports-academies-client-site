@@ -14,6 +14,7 @@ import PrivetRoute from "./PrivetRoute";
 import MySelecedClasses from "../components/Dashboard/MySelecedClasses";
 import EnrollClasses from "../components/Dashboard/EnrollClasses";
 import AddClass from "../Pages/Dashboard/AddClass";
+import MyClasses from "../Pages/Dashboard/MyClasses";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
             {
                 path: 'AddClass',
                 element: <PrivetRoute> <AddClass></AddClass></PrivetRoute>
+            },
+            {
+                path: 'MyClasses',
+                element: <PrivetRoute> <MyClasses></MyClasses></PrivetRoute>
             },
         ]
     },
