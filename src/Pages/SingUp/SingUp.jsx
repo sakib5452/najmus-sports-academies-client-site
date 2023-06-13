@@ -6,13 +6,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { TbFidgetSpinner } from 'react-icons/tb'
 import { AuthContext } from '../../provider/AuthProvider';
 import Google from '../Google/Google';
+import { saveUser } from '../../api/auth';
 const SingUp = () => {
 
     const {
         loading,
         createUser,
-        setLoading
-
+        setLoading,
+        updateUserProfile
     } = useContext(AuthContext)
 
     const navigate = useNavigate()
@@ -49,10 +50,13 @@ const SingUp = () => {
 
         createUser(email, password)
             .then(result => {
+                updateUserProfile(name, img)
+                saveUser(result.user)
                 setLoading(false)
                 const createdUser = result.user;
                 navigate(from, { replace: true })
                 console.log(createdUser);
+
                 setError('');
                 event.target.reset();
 

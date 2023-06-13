@@ -2,12 +2,15 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from '../../../src/assets/logo.png'
 import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
+import { HiHome } from 'react-icons/hi'
 import { HiOutlineBadgeCheck } from 'react-icons/hi'
 import { HiClipboardList } from 'react-icons/hi'
 import { AiOutlineBars } from 'react-icons/ai'
+import { HiFingerPrint } from 'react-icons/hi'
 import { HiCurrencyDollar } from 'react-icons/hi'
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import Avatar from "../../Pages/Avatar/Avatar";
 
 const Sidebar = () => {
 
@@ -82,12 +85,7 @@ const Sidebar = () => {
                         </div>
                         <div className='flex flex-col items-center mt-6 -mx-2'>
                             <Link to='/dashboard'>
-                                <img
-                                    className='object-cover w-24 h-24 mx-2 rounded-full'
-                                    src={user?.photoURL}
-                                    alt='avatar'
-                                    referrerPolicy='no-referrer'
-                                />
+                                <Avatar></Avatar>
                             </Link>
                             <Link to='/dashboard'>
                                 <h4 className='mx-2 mt-2 font-medium text-gray-800  hover:underline'>
@@ -104,6 +102,17 @@ const Sidebar = () => {
 
 
                     <nav>
+                        <NavLink
+                            to='/'
+                            className={({ isActive }) =>
+                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                }`
+                            }
+                        >
+                            <HiHome className='w-5 h-5' />
+
+                            <span className='mx-4 font-medium'>Home</span>
+                        </NavLink>
                         <NavLink
                             to='/dashboard/MySelectedClasses'
                             className={({ isActive }) =>
@@ -136,6 +145,17 @@ const Sidebar = () => {
                             <HiCurrencyDollar className='w-5 h-5' />
 
                             <span className='mx-4 font-medium'>Payment History</span>
+                        </NavLink>
+                        <NavLink
+                            to='/dashboard/AddClass'
+                            className={({ isActive }) =>
+                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                }`
+                            }
+                        >
+                            < HiFingerPrint className='w-5 h-5' />
+
+                            <span className='mx-4 font-medium'>Add Class</span>
                         </NavLink>
                         <NavLink
                             to='/dashboard/profile'

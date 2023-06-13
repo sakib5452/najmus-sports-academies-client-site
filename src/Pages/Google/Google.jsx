@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2'
 import { FcGoogle } from 'react-icons/fc'
 import app from '../../firebase/firebase.config';
+import { saveUser } from '../../api/auth';
 const Google = () => {
 
     const [user, setUser] = useState(null);
@@ -15,6 +16,7 @@ const Google = () => {
 
         signInWithPopup(auth, googleProvider)
             .then(result => {
+                saveUser(result.user)
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
                 setUser(loggedInUser);
