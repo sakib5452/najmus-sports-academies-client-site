@@ -22,7 +22,7 @@ const AddClass = () => {
         // Upload image
         imageUpload(image)
             .then(data => {
-                const roomData = {
+                const classData = {
 
                     name,
                     price: parseFloat(price),
@@ -48,7 +48,7 @@ const AddClass = () => {
                 //   })
                 //   .catch(err => console.log(err))
 
-                console.log(roomData)
+                console.log(classData)
                 event.target.reset();
             })
             .catch(err => {
