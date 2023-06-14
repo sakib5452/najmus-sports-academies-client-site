@@ -13,15 +13,16 @@ import { HiClipboardCheck } from 'react-icons/hi'
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Avatar from "../../Pages/Avatar/Avatar";
+import useAdmin from "../../hooks/useAdmin";
 
 const Sidebar = () => {
-
+    const [isAdmin] = useAdmin();
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
     // const [toggle, setToggle] = useState(false)
     const { user, logOut } = useContext(AuthContext)
-    const isAdmin = true;
+    // const isAdmin = true;
     const [isActive, setActive] = useState('false')
     // const toggleHandler = event => {
     //   setToggle(event.target.checked)
@@ -133,9 +134,30 @@ const Sidebar = () => {
                                 </>
                                 :
                                 <>
+                                    <NavLink
+                                        to='/dashboard/AddClass'
+                                        className={({ isActive }) =>
+                                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                            }`
+                                        }
+                                    >
+                                        < HiFingerPrint className='w-5 h-5' />
+
+                                        <span className='mx-4 font-medium'>Add Class</span>
+                                    </NavLink>
+                                    <NavLink
+                                        to='/dashboard/MyClasses'
+                                        className={({ isActive }) =>
+                                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                            }`
+                                        }
+                                    >
+                                        < HiClipboardCheck className='w-5 h-5' />
+
+                                        <span className='mx-4 font-medium'>My Classes</span>
+                                    </NavLink>
                                 </>
                         }
-
 
                         <NavLink
                             to='/dashboard/MySelectedClasses'
@@ -170,29 +192,8 @@ const Sidebar = () => {
 
                             <span className='mx-4 font-medium'>Payment History</span>
                         </NavLink>
-                        <NavLink
-                            to='/dashboard/AddClass'
-                            className={({ isActive }) =>
-                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                }`
-                            }
-                        >
-                            < HiFingerPrint className='w-5 h-5' />
 
-                            <span className='mx-4 font-medium'>Add Class</span>
-                        </NavLink>
-                        <NavLink
-                            to='/dashboard/MyClasses'
-                            className={({ isActive }) =>
-                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                }`
-                            }
-                        >
-                            < HiClipboardCheck className='w-5 h-5' />
-
-                            <span className='mx-4 font-medium'>My Classes</span>
-                        </NavLink>
-                        <div>
+                        <div className="mt-10">
                             <hr />
                             <NavLink
                                 to='/'
