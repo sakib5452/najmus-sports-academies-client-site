@@ -16,6 +16,7 @@ import EnrollClasses from "../components/Dashboard/EnrollClasses";
 import AddClass from "../Pages/Dashboard/AddClass";
 import MyClasses from "../Pages/Dashboard/MyClasses";
 import ManageClasses from "../Pages/Dashboard/ManageClasses";
+import ManageUsers from "../components/Dashboard/ManageUsers/ManageUsers";
 
 export const router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
             {
                 path: 'ManageClasses',
                 element: <PrivetRoute><ManageClasses></ManageClasses> </PrivetRoute>
+            },
+            {
+                path: 'ManageUsers',
+                element: <PrivetRoute><ManageUsers></ManageUsers> </PrivetRoute>
             },
         ]
     },

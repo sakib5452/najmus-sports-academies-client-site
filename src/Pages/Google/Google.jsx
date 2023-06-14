@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2'
 import { FcGoogle } from 'react-icons/fc'
 import app from '../../firebase/firebase.config';
-import { saveUser } from '../../api/auth';
+
 const Google = () => {
 
     const [user, setUser] = useState(null);
@@ -16,8 +16,24 @@ const Google = () => {
 
         signInWithPopup(auth, googleProvider)
             .then(result => {
-                saveUser(result.user)
                 const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const currentUser = {
+                    email: loggedInUser.email,
+                    name: loggedInUser.displayName
+
+
+                }
+
+                fetch(`${import.meta.env.VITE_API_URL}/users/${loggedInUser.email}`, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(currentUser),
+                })
+                    .then(res => res.json())
+                    .then(data => console.log(data))
                 console.log(loggedInUser);
                 setUser(loggedInUser);
                 navigate('/')

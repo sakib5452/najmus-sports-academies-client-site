@@ -7,6 +7,7 @@ import { HiOutlineBadgeCheck } from 'react-icons/hi'
 import { HiClipboardList } from 'react-icons/hi'
 import { AiOutlineBars } from 'react-icons/ai'
 import { HiFingerPrint } from 'react-icons/hi'
+import { HiUserGroup } from 'react-icons/hi'
 import { HiCurrencyDollar } from 'react-icons/hi'
 import { HiClipboardCheck } from 'react-icons/hi'
 import { useContext, useState } from "react";
@@ -20,7 +21,7 @@ const Sidebar = () => {
     const from = location.state?.from?.pathname || '/'
     // const [toggle, setToggle] = useState(false)
     const { user, logOut } = useContext(AuthContext)
-
+    const isAdmin = true;
     const [isActive, setActive] = useState('false')
     // const toggleHandler = event => {
     //   setToggle(event.target.checked)
@@ -103,17 +104,39 @@ const Sidebar = () => {
 
 
                     <nav>
-                        <NavLink
-                            to='/'
-                            className={({ isActive }) =>
-                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                }`
-                            }
-                        >
-                            <HiHome className='w-5 h-5' />
 
-                            <span className='mx-4 font-medium'>Home</span>
-                        </NavLink>
+                        {
+                            isAdmin ?
+                                <>
+                                    <NavLink
+                                        to='/dashboard/ManageClasses'
+                                        className={({ isActive }) =>
+                                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                            }`
+                                        }
+                                    >
+                                        < HiClipboardCheck className='w-5 h-5' />
+
+                                        <span className='mx-4 font-medium'>Manage Classes</span>
+                                    </NavLink>
+                                    <NavLink
+                                        to='/dashboard/ManageUsers'
+                                        className={({ isActive }) =>
+                                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                            }`
+                                        }
+                                    >
+                                        < HiUserGroup className='w-5 h-5' />
+
+                                        <span className='mx-4 font-medium'>Manage Users</span>
+                                    </NavLink>
+                                </>
+                                :
+                                <>
+                                </>
+                        }
+
+
                         <NavLink
                             to='/dashboard/MySelectedClasses'
                             className={({ isActive }) =>
@@ -169,93 +192,44 @@ const Sidebar = () => {
 
                             <span className='mx-4 font-medium'>My Classes</span>
                         </NavLink>
-                        <NavLink
-                            to='/dashboard/ManageClasses'
-                            className={({ isActive }) =>
-                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                }`
-                            }
-                        >
-                            < HiClipboardCheck className='w-5 h-5' />
+                        <div>
+                            <hr />
+                            <NavLink
+                                to='/'
+                                className={({ isActive }) =>
+                                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                    }`
+                                }
+                            >
+                                <HiHome className='w-5 h-5' />
 
-                            <span className='mx-4 font-medium'>Manage Classes</span>
-                        </NavLink>
-                        <NavLink
-                            to='/dashboard/profile'
-                            className={({ isActive }) =>
-                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                }`
-                            }
-                        >
-                            <FcSettings className='w-5 h-5' />
+                                <span className='mx-4 font-medium'>Home</span>
+                            </NavLink>
+                            <NavLink
+                                to='/dashboard/profile'
+                                className={({ isActive }) =>
+                                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                    }`
+                                }
+                            >
+                                <FcSettings className='w-5 h-5' />
 
-                            <span className='mx-4 font-medium'>Profile</span>
-                        </NavLink>
-                        <button
-                            onClick={handleLogOut}
-                            className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
-                        >
-                            <GrLogout className='w-5 h-5' />
+                                <span className='mx-4 font-medium'>Profile</span>
+                            </NavLink>
+                            <button
+                                onClick={handleLogOut}
+                                className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
+                            >
+                                <GrLogout className='w-5 h-5' />
 
-                            <span className='mx-4 font-medium'>Logout</span>
-                        </button>
+                                <span className='mx-4 font-medium'>Logout</span>
+                            </button>
+                        </div>
                     </nav>
-
-                    {/* Nav Items */}
-                    {/* <div className='flex flex-col justify-between flex-1 mt-6'>
-            <nav>
-              {role && role === 'host' ? (
-                <>
-                  <label
-                    htmlFor='Toggle3'
-                    className='inline-flex w-full justify-center items-center px-2 rounded-md cursor-pointer text-gray-800'
-                  >
-                    <input
-                      onChange={toggleHandler}
-                      id='Toggle3'
-                      type='checkbox'
-                      className='hidden peer'
-                    />
-                    <span className='px-4 py-1 rounded-l-md bg-rose-400 peer-checked:bg-gray-300'>
-                      Guest
-                    </span>
-                    <span className='px-4 py-1 rounded-r-md bg-gray-300 peer-checked:bg-rose-400'>
-                      Host
-                    </span>
-                  </label> */}
-                    {/* Menu Links */}
-                    {/* {toggle ? <HostMenu /> : <GuestMenu />} */}
-                    {/* </> */}
-                    {/* ) : (
-                <GuestMenu />
-              )} */}
-                    {/* </nav> */}
                 </div>
             </div>
 
-            {/* <div>
-                <hr />
-                <NavLink
-                    to='/dashboard/profile'
-                    className={({ isActive }) =>
-                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                        }`
-                    }
-                >
-                    <FcSettings className='w-5 h-5' />
 
-                    <span className='mx-4 font-medium'>Profile</span>
-                </NavLink>
-                <button
-                    onClick={handleLogOut}
-                    className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
-                >
-                    <GrLogout className='w-5 h-5' />
-
-                    <span className='mx-4 font-medium'>Logout</span>
-                </button>
-            </div> */}
-            {/* </div> */}
         </>
     );
 };

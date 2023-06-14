@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { TbFidgetSpinner } from 'react-icons/tb'
 import { AuthContext } from '../../provider/AuthProvider';
 import Google from '../Google/Google';
-import { saveUser } from '../../api/auth';
+
 const SingUp = () => {
 
     const {
@@ -51,18 +51,35 @@ const SingUp = () => {
         createUser(email, password)
             .then(result => {
                 updateUserProfile(name, img)
-                saveUser(result.user)
-                setLoading(false)
-                const createdUser = result.user;
-                navigate(from, { replace: true })
-                console.log(createdUser);
 
-                setError('');
-                event.target.reset();
+                    .then(() => {
+                        const currentUser = {
+                            email: email,
+                            name: name
 
-                setSuccess('User has created Success')
+                        }
 
+                        fetch(`${import.meta.env.VITE_API_URL}/users/${email}`, {
+                            method: 'PUT',
+                            headers: {
+                                'content-type': 'application/json',
+                            },
+                            body: JSON.stringify(currentUser),
+                        })
+                            .then(res => res.json())
+                            .then(data => console.log(data))
+                        setLoading(false)
+                        const createdUser = result.user;
+                        navigate(from, { replace: true })
+                        console.log(createdUser);
+
+                        setError('');
+                        event.target.reset();
+
+                        setSuccess('User has created Success')
+                    })
             })
+
             .catch(error => {
                 setLoading(false)
                 console.error(error.message);
