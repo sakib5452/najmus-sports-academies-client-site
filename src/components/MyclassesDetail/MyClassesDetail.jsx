@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 const MyClassesDetail = ({ classDetail }) => {
-    const { name, image, price, seats, } = classDetail
+    const { name, image, price, seats, status } = classDetail
     return (
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <div className="">
@@ -19,19 +19,15 @@ const MyClassesDetail = ({ classDetail }) => {
                             {name}
                         </h5>
                         <div className="flex gap-16 ">
-                            <p className="mb-5 text-gray-700 text-lg">
-                                Price: ${price}
-                            </p>
-                            <p className="mb-5 text-gray-700 text-lg">
-                                Available Seats: {seats}
-                            </p>
+                            <h4 className='text-xl font-bold text-purple-400'>Price : <span className='text-lg text-black'>${price}</span> </h4>
+                            <h4 className='text-xl font-bold text-purple-400'>Seats : <span className='text-lg text-black'>{seats}</span> </h4>
                         </div>
-                        <p className="mb-4 text-left">States: {classDetail.host.status}</p>
-                        <p className="mb-4 text-left">Enrolled: </p>
-                        <p className="mb-4 text-left">Feedback:</p>
+                        <h4 className='text-xl  text-left font-bold text-purple-400'>States: <span className='text-lg text-black'>{status}</span> </h4>
+                        <h4 className='text-xl  text-left font-bold text-purple-400'>Enrolled: <span className='text-lg text-black'>coming soon</span> </h4>
+                        <h4 className='text-xl  text-left font-bold text-purple-400'>Feedback: <span className='text-lg text-black'>coming soon</span> </h4>
                         <button
                             type="submit"
-                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                            className="inline-flex mt-4 items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                         >
                             Update Class
                         </button>

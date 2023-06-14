@@ -15,3 +15,11 @@ export const saveUser = user => {
         .then(res => res.json())
         .then(data => console.log(data))
 }
+
+
+// Get role
+export const getStatus = async email => {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/classes/${email}`)
+    const user = await response.json()
+    return user?.status
+}

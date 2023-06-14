@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 
 const ManageClassesDetail = ({ manage }) => {
-    const { name, image, price, seats } = manage
+    const { name, image, price, seats, email, status } = manage
     return (
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div className="px-4 mx-auto mt-5 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <div >
                 <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
                     <img
@@ -12,17 +12,26 @@ const ManageClassesDetail = ({ manage }) => {
                         alt=""
                     />
                     <div className="p-5 border border-t-0">
-                        <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-                            <a
-                                href="/"
-                                className="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700"
-                                aria-label="Category"
-                                title="traveling"
-                            >
-                                traveling
+                        <div className="flex items-center mb-5">
+                            <a aria-label="Author" className="mr-3">
+                                <img
+                                    alt="avatar"
+                                    src={manage.host.image}
+                                    className="object-cover w-10 h-10 rounded-full shadow-sm"
+                                />
                             </a>
-                            <span className="text-gray-600">— 28 Dec 2020</span>
-                        </p>
+                            <div>
+                                <a
+                                    aria-label="Author"
+                                    className="font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                >
+                                    {manage.host.name}
+                                </a>
+                                <p className="text-sm font-medium leading-4 text-gray-600">
+                                    {email}
+                                </p>
+                            </div>
+                        </div>
                         <a
                             aria-label="Category"
                             title="Visit the East"
@@ -30,23 +39,42 @@ const ManageClassesDetail = ({ manage }) => {
                         >
                             {name}
                         </a>
-                        <p className="mb-2 text-gray-700">
-                            {price}
-                        </p>
-                        <p className="mb-2 text-gray-700">
-                            {seats}
-                        </p>
-                        <a
-                            href="/"
-                            aria-label=""
-                            className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+                        <div className="flex gap-16">
+                            <h4 className='text-xl font-bold text-purple-400'>Price : <span className='text-lg text-black'>${price}</span> </h4>
+                            <h4 className='text-xl font-bold text-purple-400'>Seats : <span className='text-lg text-black'>{seats}</span> </h4>
+                        </div>
+                        <h4 className='text-xl  text-left font-bold text-purple-400'>States: <span className='text-lg text-black'>{status}</span> </h4>
+
+                        <div className="grid grid-cols-2 gap-3">
+                            <button
+                                type="submit"
+                                className="inline-flex mt-4 items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                            >
+                                Approved
+                            </button>
+                            <button
+                                type="submit"
+                                className="inline-flex mt-4 items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                            >
+                                Deny
+                            </button>
+                        </div>
+
+                        <div className="grid grid-cols-1">
+                            <label className=' pt-3 text-xl font-bold text-purple-400'>Feedback</label>
+                            <textarea className="textarea textarea-primary" placeholder="Feedback"></textarea>
+                        </div>
+                        <button
+                            type="submit"
+                            className="inline-flex mt-4 items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                         >
-                            Learn more
-                        </a>
+                            Feedback
+                        </button>
+
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

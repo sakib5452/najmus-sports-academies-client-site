@@ -15,7 +15,7 @@ const ManageClasses = () => {
             .catch(err => console.log(err))
     }, [])
     return (
-        <div className="grid gap-8 lg:grid-cols-2 sm:max-w-sm sm:mx-auto lg:max-w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 sm:max-w-sm sm:mx-auto lg:max-w-full">
             {
                 manageClasses.map(manage => <ManageClassesDetail
                     key={manage._id}

@@ -34,11 +34,12 @@ const AddClass = () => {
                     seats: parseFloat(seats),
                     image: data.data.display_url,
                     email,
+                    status: 'pending',
                     host: {
                         name: user?.displayName,
                         image: user?.photoURL,
 
-                        status: 'pending'
+
                     },
 
                 }
