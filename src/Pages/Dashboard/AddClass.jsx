@@ -22,6 +22,7 @@ const AddClass = () => {
         const price = event.target.price.value
         const seats = event.target.seats.value
         const image = event.target.image.files[0]
+        const email = user?.email;
         setUploadButtonText('Uploading...')
         // Upload image
         imageUpload(image)
@@ -32,10 +33,11 @@ const AddClass = () => {
                     price: parseFloat(price),
                     seats: parseFloat(seats),
                     image: data.data.display_url,
+                    email,
                     host: {
                         name: user?.displayName,
                         image: user?.photoURL,
-                        email: user?.email,
+
                         status: 'pending'
                     },
 
