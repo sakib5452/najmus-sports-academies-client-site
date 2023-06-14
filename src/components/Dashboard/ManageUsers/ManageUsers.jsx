@@ -17,7 +17,7 @@ const ManageUsers = () => {
                 <table className="table table-zebra w-full">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr >
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
