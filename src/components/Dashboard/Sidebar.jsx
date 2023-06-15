@@ -14,9 +14,11 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Avatar from "../../Pages/Avatar/Avatar";
 import useAdmin from "../../hooks/useAdmin";
+import UseInstructor from "../../hooks/UseInstructor";
 
 const Sidebar = () => {
     const [isAdmin] = useAdmin();
+    const [isInstructor] = UseInstructor();
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
@@ -107,91 +109,100 @@ const Sidebar = () => {
                     <nav>
 
                         {
-                            isAdmin ?
-                                <>
-                                    <NavLink
-                                        to='/dashboard/ManageClasses'
-                                        className={({ isActive }) =>
-                                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                            }`
-                                        }
-                                    >
-                                        < HiClipboardCheck className='w-5 h-5' />
+                            isAdmin &&
+                            <>
+                                <NavLink
+                                    to='/dashboard/ManageClasses'
+                                    className={({ isActive }) =>
+                                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                        }`
+                                    }
+                                >
+                                    < HiClipboardCheck className='w-5 h-5' />
 
-                                        <span className='mx-4 font-medium'>Manage Classes</span>
-                                    </NavLink>
-                                    <NavLink
-                                        to='/dashboard/ManageUsers'
-                                        className={({ isActive }) =>
-                                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                            }`
-                                        }
-                                    >
-                                        < HiUserGroup className='w-5 h-5' />
+                                    <span className='mx-4 font-medium'>Manage Classes</span>
+                                </NavLink>
+                                <NavLink
+                                    to='/dashboard/ManageUsers'
+                                    className={({ isActive }) =>
+                                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                        }`
+                                    }
+                                >
+                                    < HiUserGroup className='w-5 h-5' />
 
-                                        <span className='mx-4 font-medium'>Manage Users</span>
-                                    </NavLink>
-                                </>
-                                :
-                                <>
-                                    <NavLink
-                                        to='/dashboard/AddClass'
-                                        className={({ isActive }) =>
-                                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                            }`
-                                        }
-                                    >
-                                        < HiFingerPrint className='w-5 h-5' />
-
-                                        <span className='mx-4 font-medium'>Add Class</span>
-                                    </NavLink>
-                                    <NavLink
-                                        to='/dashboard/MyClasses'
-                                        className={({ isActive }) =>
-                                            `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                            }`
-                                        }
-                                    >
-                                        < HiClipboardCheck className='w-5 h-5' />
-
-                                        <span className='mx-4 font-medium'>My Classes</span>
-                                    </NavLink>
-                                </>
+                                    <span className='mx-4 font-medium'>Manage Users</span>
+                                </NavLink>
+                            </>
                         }
 
-                        <NavLink
-                            to='/dashboard/MySelectedClasses'
-                            className={({ isActive }) =>
-                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                }`
-                            }
-                        >
-                            <HiOutlineBadgeCheck className='w-5 h-5' />
+                        {
+                            isInstructor &&
+                            <>
+                                <NavLink
+                                    to='/dashboard/AddClass'
+                                    className={({ isActive }) =>
+                                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                        }`
+                                    }
+                                >
+                                    < HiFingerPrint className='w-5 h-5' />
 
-                            <span className='mx-4 font-medium'>My Selected Classes</span>
-                        </NavLink>
-                        <NavLink
-                            to='/dashboard/EnrolledClasses'
-                            className={({ isActive }) =>
-                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                }`
-                            }
-                        >
-                            <HiClipboardList className='w-5 h-5' />
+                                    <span className='mx-4 font-medium'>Add Class</span>
+                                </NavLink>
+                                <NavLink
+                                    to='/dashboard/MyClasses'
+                                    className={({ isActive }) =>
+                                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                        }`
+                                    }
+                                >
+                                    < HiClipboardCheck className='w-5 h-5' />
 
-                            <span className='mx-4 font-medium'>Enrolled Classes</span>
-                        </NavLink>
-                        <NavLink
-                            to='/dashboard/paymentHistory'
-                            className={({ isActive }) =>
-                                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                                }`
-                            }
-                        >
-                            <HiCurrencyDollar className='w-5 h-5' />
+                                    <span className='mx-4 font-medium'>My Classes</span>
+                                </NavLink>
+                            </>
+                        }
 
-                            <span className='mx-4 font-medium'>Payment History</span>
-                        </NavLink>
+                        {!isInstructor && !isAdmin &&
+                            <>
+                                <NavLink
+                                    to='/dashboard/MySelectedClasses'
+                                    className={({ isActive }) =>
+                                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                        }`
+                                    }
+                                >
+                                    <HiOutlineBadgeCheck className='w-5 h-5' />
+
+                                    <span className='mx-4 font-medium'>My Selected Classes</span>
+                                </NavLink>
+                                <NavLink
+                                    to='/dashboard/EnrolledClasses'
+                                    className={({ isActive }) =>
+                                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                        }`
+                                    }
+                                >
+                                    <HiClipboardList className='w-5 h-5' />
+
+                                    <span className='mx-4 font-medium'>Enrolled Classes</span>
+                                </NavLink>
+                                <NavLink
+                                    to='/dashboard/paymentHistory'
+                                    className={({ isActive }) =>
+                                        `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                        }`
+                                    }
+                                >
+                                    <HiCurrencyDollar className='w-5 h-5' />
+
+                                    <span className='mx-4 font-medium'>Payment History</span>
+                                </NavLink>
+
+                            </>
+
+                        }
 
                         <div className="mt-10">
                             <hr />

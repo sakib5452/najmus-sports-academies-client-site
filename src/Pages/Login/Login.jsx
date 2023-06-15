@@ -36,6 +36,7 @@ const Login = () => {
         const password = event.target.password.value
         signIn(email, password)
             .then(result => {
+                setLoading(false)
                 console.log(result.user)
                 navigate(from, { replace: true })
             })

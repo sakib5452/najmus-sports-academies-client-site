@@ -55,7 +55,8 @@ const SingUp = () => {
                     .then(() => {
                         const currentUser = {
                             email: email,
-                            name: name
+                            name: name,
+                            img: img
 
                         }
 

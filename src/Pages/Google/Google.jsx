@@ -20,9 +20,8 @@ const Google = () => {
                 console.log(loggedInUser);
                 const currentUser = {
                     email: loggedInUser.email,
-                    name: loggedInUser.displayName
-
-
+                    name: loggedInUser.displayName,
+                    img: loggedInUser.photoURL
                 }
 
                 fetch(`${import.meta.env.VITE_API_URL}/users/${loggedInUser.email}`, {

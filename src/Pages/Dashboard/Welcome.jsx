@@ -1,8 +1,11 @@
-// import { useContext } from "react";
-// import { AuthContext } from "../../provider/AuthProvider";
+import UseInstructor from "../../hooks/UseInstructor";
+import useAdmin from "../../hooks/useAdmin";
+
 
 const Welcome = () => {
-    // const {user} = useContext(AuthContext)
+
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = UseInstructor();
     return (
         <div className="h-screen text-gray-700 flex flex-col justify-center items-center pb-16">
             <div className="flex justify-center items-center">
@@ -12,16 +15,28 @@ const Welcome = () => {
                 <p className="text-6xl font-bold">To</p>
             </div>
             <div className="flex justify-center text-gray-500 items-center mt-4">
-                {/* {user && user.role ?
-                    ( <>
-                    {
-                    user.role === 'admin' ?(  <p className="text-3xl font-medium">Admin Dashboard</p>) : 
-                    (<p className="text-3xl font-medium">Host Dashboard</p> )
-                    } {' '} </>)
-                    :
-                    (<p className="text-3xl font-medium">User Dashboard</p>) 
-                   
-                   } */}
+
+                {isAdmin &&
+                    <>
+                        <p className="text-3xl font-medium">Admin Dashboard</p>
+                    </>
+                }
+
+                {
+                    isInstructor &&
+                    <>
+                        <p className="text-3xl font-medium">Instructor Dashboard</p>
+                    </>
+                }
+
+                {!isInstructor && !isAdmin &&
+                    <>
+                        <p className="text-3xl font-medium">Student Dashboard</p>
+
+                    </>
+
+                }
+
 
             </div>
         </div>

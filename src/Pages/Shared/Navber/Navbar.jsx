@@ -75,7 +75,6 @@ const Navbar = () => {
                         <li className='h-14 w-14'>
                             <Link
                                 to="/"
-                                // title={user?.displayName}
                                 title={user && user?.displayName ? user?.displayName : "User Name"}
                                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                             >
