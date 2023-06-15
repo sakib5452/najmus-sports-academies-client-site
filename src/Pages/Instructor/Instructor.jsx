@@ -1,38 +1,43 @@
+/* eslint-disable no-unused-vars */
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const Instructor = () => {
+
+    const [axiosSecure] = useAxiosSecure();
+    const { data: instructors = [], refetch } = useQuery(['instructors'], async () => {
+        const res = await axiosSecure.get('/instructors')
+        return res.data;
+    })
+    refetch()
     return (
-        <div className="w-full">
-            <h3 className="text-3xl font-semibold my-4">Total Users: </h3>
+        <div className="w-full mb-20">
+            <h3 className="text-3xl font-semibold my-4">Total Users:{instructors.length} </h3>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     {/* head */}
                     <thead>
                         <tr >
                             <th>#</th>
+                            <th>Img</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Role</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
-                    {/* <tbody>
+                    <tbody>
                         {
-                            users.map((user, index) => <tr key={user._id}>
+                            instructors.map((instructors, index) => <tr key={instructors._id}>
                                 <th>{index + 1}</th>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.role === 'admin' ? 'admin' :
-                                    <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-orange-600  text-white"><FaUserShield></FaUserShield></button>
-                                }</td>
-                                <td>{user.role === 'instructor' ? 'instructor' :
-                                    <button onClick={() => handleMakeInstructor(user)} className="btn btn-ghost bg-orange-600  text-white"><FaUserShield></FaUserShield></button>
-                                }</td>
+                                <td><img className='rounded-full' src={instructors.img} alt="" height='50'
+                                    width='50' /></td>
+                                <td>{instructors.name}</td>
+                                <td>{instructors.email}</td>
                             </tr>)
                         }
 
 
-                    </tbody> */}
+                    </tbody>
                 </table>
             </div>
         </div>
