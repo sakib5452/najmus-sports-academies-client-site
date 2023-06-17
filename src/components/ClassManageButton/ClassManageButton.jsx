@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 
 
 const ClassManageButton = () => {
-
     const [manageClasses, setManageClasses] = useState([]);
     useEffect(() => {
 
@@ -18,7 +17,7 @@ const ClassManageButton = () => {
     }, [])
 
     const handleMakeApproved = user => {
-        console.log('hello')
+
         fetch(`http://localhost:5000/classes/approved/${user._id}`, {
             method: 'PATCH'
         })
@@ -29,7 +28,26 @@ const ClassManageButton = () => {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: `${user.name} !`,
+                        title: 'Approved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    }
+    const handleMakeDeny = user => {
+
+        fetch(`http://localhost:5000/classes/deny/${user._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Deny',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -88,15 +106,17 @@ const ClassManageButton = () => {
                                     <h4 className='text-xl  text-left font-bold text-purple-400'>States: <span className='text-lg text-black'>{user.status}</span> </h4>
                                     <div className="grid grid-cols-2 gap-3">
 
-                                        {user.status === 'Approved' ? <button className="disabled inline-flex mt-4 items-center justify-center h-12 px-6 font-medium tracking-wide text-slate-400 transition duration-200 rounded shadow-md bg-slate-500 focus:shadow-outline focus:outline-none">Approved</button> :
+                                        {user.status === 'Approved' ?
+                                            <button className="disabled inline-flex mt-4 items-center justify-center h-12 px-6 font-medium tracking-wide text-slate-500 transition duration-200 rounded shadow-md bg-zinc-600 focus:shadow-outline focus:outline-none">Approved</button>
+                                            :
                                             <button onClick={() => handleMakeApproved(user)} className="inline-flex mt-4 items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none">Approved</button>
                                         }
-                                        <button
-                                            type="submit"
-                                            className="inline-flex mt-4 items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                                        >
-                                            Deny
-                                        </button>
+                                        {
+                                            user.status === 'Deny' ?
+                                                <button className="disabled inline-flex mt-4 items-center justify-center h-12 px-6 font-medium tracking-wide text-slate-500 transition duration-200 rounded shadow-md bg-zinc-600 focus:shadow-outline focus:outline-none">Deny</button>
+                                                :
+                                                <button onClick={() => handleMakeDeny(user)} className="inline-flex mt-4 items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none">Deny</button>
+                                        }
                                     </div>
 
                                     <div className="grid grid-cols-1">

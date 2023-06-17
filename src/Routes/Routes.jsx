@@ -19,6 +19,8 @@ import ManageUsers from "../components/Dashboard/ManageUsers/ManageUsers";
 import Instructor from "../Pages/Instructor/Instructor";
 import ClassManageButton from "../components/ClassManageButton/ClassManageButton";
 import Classes from "../Pages/Classes/Classes";
+import Update from "../Pages/Update/Update";
+// import Payment from "../Pages/payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -83,6 +85,15 @@ export const router = createBrowserRouter([
             {
                 path: 'ManageUsers',
                 element: <PrivetRoute><ManageUsers></ManageUsers> </PrivetRoute>
+            },
+            // {
+            //     path: 'payment',
+            //     element: <PrivetRoute><Payment></Payment> </PrivetRoute>
+            // },
+            {
+                path: "update/:id",
+                element: <Update></Update>,
+                loader: ({ params }) => fetch(`http://localhost:5000/classes/${params._id}`)
             },
         ]
     },
