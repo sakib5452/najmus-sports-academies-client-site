@@ -28,7 +28,7 @@ const Update = () => {
 
 
 
-        fetch(`http://localhost:5000/classes/update/${updateClasses._id}`, {
+        fetch(`https://sports-academies-server-site.vercel.app/classes/update/${updateClasses._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

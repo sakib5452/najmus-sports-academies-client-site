@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 const ClassesDetail = ({ approved }) => {
     const { _id, name, price, seats, image } = approved
 
-    console.log('64', approved)
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
@@ -20,7 +19,7 @@ const ClassesDetail = ({ approved }) => {
 
 
 
-            fetch('http://localhost:5000/addClass', {
+            fetch('https://sports-academies-server-site.vercel.app/addClass', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

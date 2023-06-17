@@ -20,7 +20,7 @@ const Classes = () => {
     // refetch()
 
     useEffect(() => {
-        fetch('http://localhost:5000/approved')
+        fetch('https://sports-academies-server-site.vercel.app/approved')
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);

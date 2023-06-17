@@ -20,7 +20,7 @@ const ClassDetail = ({ approved }) => {
 
 
 
-            fetch('http://localhost:5000/addClass', {
+            fetch('https://sports-academies-server-site.vercel.app/addClass', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

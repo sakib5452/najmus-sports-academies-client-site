@@ -10,7 +10,7 @@ const ManageUsers = () => {
         return res.data;
     })
     const handleMakeAdmin = user => {
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://sports-academies-server-site.vercel.app/users/admin/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())

@@ -93,7 +93,7 @@ export const router = createBrowserRouter([
             {
                 path: "update/:id",
                 element: <Update></Update>,
-                loader: ({ params }) => fetch(`http://localhost:5000/classes/${params._id}`)
+                loader: ({ params }) => fetch(`https://sports-academies-server-site.vercel.app/${params._id}`)
             },
         ]
     },

@@ -7,7 +7,7 @@ const MyClasses = () => {
     const [classes, setClasses] = useState([]);
     const { user } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/classes/${user?.email}`)
+        fetch(`${import.meta.env.VITE_API_URL}/classes/`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);

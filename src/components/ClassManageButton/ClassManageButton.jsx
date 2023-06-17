@@ -18,7 +18,7 @@ const ClassManageButton = () => {
 
     const handleMakeApproved = user => {
 
-        fetch(`http://localhost:5000/classes/approved/${user._id}`, {
+        fetch(`https://sports-academies-server-site.vercel.app/classes/approved/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -37,7 +37,7 @@ const ClassManageButton = () => {
     }
     const handleMakeDeny = user => {
 
-        fetch(`http://localhost:5000/classes/deny/${user._id}`, {
+        fetch(`https://sports-academies-server-site.vercel.app/classes/deny/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
